@@ -1,7 +1,7 @@
 [
   {
     "name": "Americano",
-    "price": 4.0,
+    "price": 5.0,
     "applicableAddons": [
       {
         "name": "Sut",
@@ -9,16 +9,21 @@
         "id": 1
       },
       {
+        "name": "Su",
+        "price": 0.5,
+        "id": 2
+      },
+      {
         "name": "Findik Surubu",
         "price": 1.5,
-        "id": 2
+        "id": 3
       }
     ],
-    "id": 3
+    "id": 5
   },
   {
-    "name": "Americano",
-    "price": 4.0,
+    "name": "Espresso",
+    "price": 5.0,
     "applicableAddons": [
       {
         "name": "Sut",
@@ -28,9 +33,38 @@
       {
         "name": "Findik Surubu",
         "price": 1.5,
+        "id": 3
+      }
+    ],
+    "id": 7
+  },
+  {
+    "name": "Cay",
+    "price": 5.0,
+    "applicableAddons": [
+      {
+        "name": "Tarcin",
+        "price": 2.0,
+        "id": 4
+      },
+      {
+        "name": "Su",
+        "price": 0.5,
         "id": 2
       }
     ],
-    "id": 3
+    "id": 9
+  },
+  {
+    "name": "Latte",
+    "price": 5.0,
+    "applicableAddons": [
+      {
+        "name": "Findik Surubu",
+        "price": 1.5,
+        "id": 3
+      }
+    ],
+    "id": 8
   }
 ]

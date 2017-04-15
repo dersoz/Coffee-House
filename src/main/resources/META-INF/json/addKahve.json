@@ -1,38 +1,70 @@
 [
   {
-    "name": "Italiano",
-    "price": 6.0,
-    "applicableAddons": [
-      {
-        "id": 3
-      },
-      {
-        "id": 2
-      },
-      {
-        "id": 1
-      }
-    ]
-  },
-  {
     "name": "Americano",
-    "price": 4.0,
+    "price": 5.0,
     "applicableAddons": [
       {
+        "name": "Sut",
+        "price": 1.0,
+        "id": 1
+      },
+      {
+        "name": "Su",
+        "price": 0.5,
         "id": 2
       },
       {
-        "id": 1
+        "name": "Findik Surubu",
+        "price": 1.5,
+        "id": 3
       }
-    ]
+    ],
+    "id": 5
   },
   {
-    "name": "Turkish",
-    "price": 6.0,
+    "name": "Cay",
+    "price": 5.0,
     "applicableAddons": [
       {
-        "id": 1
+        "name": "Tarcin",
+        "price": 2.0,
+        "id": 4
+      },
+      {
+        "name": "Su",
+        "price": 0.5,
+        "id": 2
       }
-    ]
+    ],
+    "id": 13
+  },
+  {
+    "name": "Latte",
+    "price": 5.0,
+    "applicableAddons": [
+      {
+        "name": "Findik Surubu",
+        "price": 1.5,
+        "id": 3
+      }
+    ],
+    "id": 11
+  },
+  {
+    "name": "Espresso",
+    "price": 5.0,
+    "applicableAddons": [
+      {
+        "name": "Sut",
+        "price": 1.0,
+        "id": 1
+      },
+      {
+        "name": "Findik Surubu",
+        "price": 1.5,
+        "id": 3
+      }
+    ],
+    "id": 9
   }
 ]

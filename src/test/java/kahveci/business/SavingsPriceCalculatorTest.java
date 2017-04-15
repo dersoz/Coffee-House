@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.Collections;
 
-import static kahveci.business.PriceCalculatorTestHelper.*;
+import static kahveci.business.KahveciBuilders.*;
 
 public class SavingsPriceCalculatorTest {
 

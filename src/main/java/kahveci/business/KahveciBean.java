@@ -2,11 +2,13 @@ package kahveci.business;
 
 import kahveci.domain.Eklenti;
 import kahveci.domain.Kahve;
+import kahveci.domain.PurchaseEvent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,14 +33,22 @@ public class KahveciBean {
                 .getSingleResult();
     }
 
-    public void addKahve(Kahve kahve) {
+    public void addKahve(@NotNull Kahve kahve) {
         em.persist(kahve);
+        PurchaseEvent event = new PurchaseEvent(kahve, 0);
+        em.persist(event);
+    }
+
+    public void addKahveler(@NotNull Kahve... kahveler) {
+        Arrays.stream(kahveler).forEach(this::addKahve);
+    }
+
+    public void addEklenti(@NotNull Eklenti eklenti) {
+        em.persist(eklenti);
     }
 
     public void addEklentiler(@NotNull Eklenti... eklentiler) {
-        for (Eklenti eklenti : eklentiler) {
-            em.persist(eklenti);
-        }
+        Arrays.stream(eklentiler).forEach(this::addEklenti);
     }
 
     public void addEklentiler(@NotNull Collection<Eklenti> eklentiler) {
