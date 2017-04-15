@@ -1,1 +1,1 @@
-web:    java -jar target/kahveci-business-swarm.jar target/kahveci-business.war
+web:    java -Dswarm.http.port=$PORT -jar target/kahveci-business-swarm.jar target/kahveci-business.war
