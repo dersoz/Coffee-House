@@ -1,1 +1,1 @@
-web:    java -jar target/kahveci-business-swarm.jar
+web:    java -jar target/kahveci-business-swarm.jar target/kahveci-business.war
