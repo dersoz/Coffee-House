@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Italiano",
+    "price": 6.0,
+    "eklentiler": [
+      {
+        "id": 3
+      },
+      {
+        "id": 2
+      },
+      {
+        "id": 1
+      }
+    ]
+  },
+  {
+    "name": "Americano",
+    "price": 4.0,
+    "eklentiler": [
+      {
+        "id": 2
+      },
+      {
+        "id": 1
+      }
+    ]
+  },
+  {
+    "name": "Turkish",
+    "price": 6.0,
+    "eklentiler": [
+      {
+        "id": 1
+      }
+    ]
+  }
+]

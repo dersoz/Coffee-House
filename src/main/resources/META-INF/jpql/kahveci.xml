@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 version="2.0"
+                 xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+
+    <!-- @formatter:off -->
+
+    <named-query name="kahveci.findAllKahve">
+        <query>
+            select
+                k
+            from
+                Kahve k
+        </query>
+    </named-query>
+
+    <named-query name="kahveci.findAllEklenti">
+        <query>
+            select
+                e
+            from
+                Eklenti e
+        </query>
+    </named-query>
+
+    <named-query name="pets.deleteAllEklenti">
+        <query>
+            delete
+            from Eklenti
+        </query>
+    </named-query>
+
+    <!-- @formatter:on -->
+</entity-mappings>
