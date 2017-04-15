@@ -3,15 +3,15 @@ swarm:
     data-sources:
       ### [datasource]
       coffeeDS:
-        driver-name: myPostgres
-        connection-url: jdbc:postgresql://localhost:5432/kahvecidb?createDatabaseIfNotExist=true
-        user-name: barista
-        password: qwe
+        driver-name: myh2
+        connection-url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        user-name: sa
+        password: sa
       ### [datasource]
     jdbc-drivers:
       ### [driver]
-      myPostgres:
-        driver-class-name: org.postgresql.Driver
-        xa-datasource-name: org.postgresql.xa.PGXADataSource
-        driver-module-name: org.postgresql
+      myh2:
+        driver-class-name: org.h2.Driver
+        xa-datasource-name: org.h2.jdbcx.JdbcDataSource
+        driver-module-name: com.h2database.h2
       ### [driver]
