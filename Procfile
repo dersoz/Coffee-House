@@ -1,1 +1,1 @@
-web:    mvn clean install -DskipTests && mvn wildfly-swarm:run
+web:    mvn clean package -DskipTests && java -jar target/kahveci-business-swarm.jar
