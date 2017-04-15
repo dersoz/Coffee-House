@@ -4,15 +4,17 @@ import kahveci.domain.Cart;
 import kahveci.domain.Eklenti;
 import kahveci.domain.PurchaseItem;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
+import java.util.LinkedList;
+import java.util.List;
 
-@ApplicationScoped
 public class PriceCalculator {
 
-    @Inject
-    private Instance<SavingsRule> savingsRules;
+    private static final List<SavingsRule> savingsRules = new LinkedList<>();
+
+    static {
+        savingsRules.add(new ThreeOrMoreCoffeeSavingsRule());
+        savingsRules.add(new TotalPriceSavingsRule());
+    }
 
     /**
      * Birden fazla indirim uygulanabiliyorsa en buyugunu uygula
