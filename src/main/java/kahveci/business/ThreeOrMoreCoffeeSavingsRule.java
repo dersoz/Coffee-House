@@ -2,13 +2,11 @@ package kahveci.business;
 
 import kahveci.domain.Cart;
 
-import javax.inject.Inject;
 import java.util.stream.DoubleStream;
 
 public class ThreeOrMoreCoffeeSavingsRule implements SavingsRule {
 
-    @Inject
-    private PriceCalculator priceCalculator;
+    private PriceCalculator priceCalculator = new PriceCalculator();
 
     @Override
     public double apply(Cart cart) {

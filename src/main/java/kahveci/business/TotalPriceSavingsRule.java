@@ -6,8 +6,7 @@ import javax.inject.Inject;
 
 public class TotalPriceSavingsRule implements SavingsRule {
 
-    @Inject
-    private PriceCalculator priceCalculator;
+    private PriceCalculator priceCalculator = new PriceCalculator();
 
     private final int savingsThreshold = 12;
     private final double savingPercentage = 0.25;
