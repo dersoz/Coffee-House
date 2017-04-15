@@ -1,1 +1,1 @@
-web:    mvn clean install -DskipTests && mvn -pl kahveci-business wildfly-swarm:run
+web:    mvn clean install -DskipTests && mvn wildfly-swarm:run

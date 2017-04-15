@@ -1,114 +1,36 @@
 [
   {
-    "name": "Italiano",
-    "price": 6.0,
-    "eklentiler": [
+    "name": "Americano",
+    "price": 4.0,
+    "applicableAddons": [
       {
         "name": "Sut",
         "price": 1.0,
         "id": 1
       },
       {
-        "name": "Su",
-        "price": 0.1,
-        "id": 2
-      },
-      {
         "name": "Findik Surubu",
         "price": 1.5,
-        "id": 3
-      }
-    ],
-    "id": 4
-  },
-  {
-    "name": "Italiano",
-    "price": 6.0,
-    "eklentiler": [
-      {
-        "name": "Sut",
-        "price": 1.0,
-        "id": 1
-      },
-      {
-        "name": "Su",
-        "price": 0.1,
         "id": 2
-      },
-      {
-        "name": "Findik Surubu",
-        "price": 1.5,
-        "id": 3
       }
     ],
-    "id": 4
-  },
-  {
-    "name": "Italiano",
-    "price": 6.0,
-    "eklentiler": [
-      {
-        "name": "Sut",
-        "price": 1.0,
-        "id": 1
-      },
-      {
-        "name": "Su",
-        "price": 0.1,
-        "id": 2
-      },
-      {
-        "name": "Findik Surubu",
-        "price": 1.5,
-        "id": 3
-      }
-    ],
-    "id": 4
+    "id": 3
   },
   {
     "name": "Americano",
     "price": 4.0,
-    "eklentiler": [
+    "applicableAddons": [
       {
         "name": "Sut",
         "price": 1.0,
         "id": 1
       },
       {
-        "name": "Su",
-        "price": 0.1,
+        "name": "Findik Surubu",
+        "price": 1.5,
         "id": 2
       }
     ],
-    "id": 5
-  },
-  {
-    "name": "Americano",
-    "price": 4.0,
-    "eklentiler": [
-      {
-        "name": "Sut",
-        "price": 1.0,
-        "id": 1
-      },
-      {
-        "name": "Su",
-        "price": 0.1,
-        "id": 2
-      }
-    ],
-    "id": 5
-  },
-  {
-    "name": "Turkish",
-    "price": 6.0,
-    "eklentiler": [
-      {
-        "name": "Sut",
-        "price": 1.0,
-        "id": 1
-      }
-    ],
-    "id": 6
+    "id": 3
   }
 ]

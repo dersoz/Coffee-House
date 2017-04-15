@@ -22,7 +22,7 @@ public class KahveciBean {
     }
 
     public List<Kahve> getAllKahve() {
-        return em.createQuery("select k from Kahve k join fetch k.applicableAddons", Kahve.class)
+        return em.createQuery("select distinct k from Kahve k join fetch k.applicableAddons", Kahve.class)
                 .getResultList();
     }
 
