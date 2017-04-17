@@ -47,16 +47,11 @@ public class TestResource {
     public Response testPurchase() {
         Optional<Kahve> americano = dbHelper.findKahveByName("Americano");
         Optional<Eklenti> eklenti = dbHelper.findEklentiByEklentiAndKahveName("Sut", "Americano");
-        Kahve k = americano.get();
-        Eklenti e = eklenti.get();
+        if (!americano.isPresent() || !eklenti.isPresent())
+            return Response.status(Response.Status.BAD_REQUEST).build();
         Cart cart = buildCart(
                 buildItemList(
-                        buildItem(
-                                k,
-                                buildEklentiler(
-                                        e
-                                )
-                        )
+                        buildItem(americano.get(), buildEklentiler(eklenti.get()))
                 )
         );
         PurchaseResult purchase = purchaseBean.purchase(cart);
