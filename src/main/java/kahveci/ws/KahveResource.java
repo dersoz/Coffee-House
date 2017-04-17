@@ -19,7 +19,8 @@ public class KahveResource {
 
     @GET
     public Response getAllKahve() {
-        return Response.ok()
+        return Response
+                .ok()
                 .entity(kahveciBean.getAllKahve())
                 .build();
     }

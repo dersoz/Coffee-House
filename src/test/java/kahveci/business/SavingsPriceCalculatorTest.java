@@ -152,5 +152,4 @@ public class SavingsPriceCalculatorTest {
         Assert.assertEquals(9.625, priceCalculator.calculateSavings(cart), 0.001);
     }
 
-
 }

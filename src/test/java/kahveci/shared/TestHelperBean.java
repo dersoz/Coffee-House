@@ -24,6 +24,11 @@ public class TestHelperBean {
         Assert.assertEquals(expectedSize, list.size());
     }
 
+    public Long getAllKahveCount() {
+        return em.createQuery("select count(k) from Kahve k", Long.class)
+                .getSingleResult();
+    }
+
     public <T extends BaseEntity> void add(T entity) {
         em.persist(entity);
     }

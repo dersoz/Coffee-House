@@ -32,10 +32,11 @@ public final class KahveciBuilders {
                 .build();
     }
 
-    public static Kahve buildKahve(String name, double price) {
+    public static Kahve buildKahve(String name, double price, Eklenti... eList) {
         return Kahve.builder()
                 .name(name)
                 .price(price)
+                .applicableAddons(new HashSet<>(Arrays.asList(eList)))
                 .build();
     }
 

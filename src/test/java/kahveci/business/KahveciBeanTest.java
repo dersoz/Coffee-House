@@ -1,14 +1,15 @@
-package kahveci;
+package kahveci.business;
 
-import kahveci.business.KahveciBean;
 import kahveci.domain.Eklenti;
 import kahveci.domain.Kahve;
 import kahveci.shared.ArquillianDeployer;
+import kahveci.startup.DbHelper;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,21 +24,30 @@ public class KahveciBeanTest {
     @Inject
     private KahveciBean kahveciBean;
 
+    @Inject
+    private DbHelper dbHelper;
+
     @Deployment
     public static WebArchive createDeployment() {
         return ArquillianDeployer.createDeployment();
     }
 
+    @Before
+    public void setUp() {
+        dbHelper.clearDb();
+        Assert.assertTrue(kahveciBean.getAllEklenti().isEmpty());
+        Assert.assertTrue(kahveciBean.getAllKahve().isEmpty());
+    }
+
     @Test
     public void shouldAddEklentiAndKahve() {
         Set<Eklenti> eklentiler = getEklentiler();
-
         Assert.assertTrue(kahveciBean.getAllKahve().isEmpty());
         Kahve k1 = buildKahve("Turk Kahvesi", 5);
         k1.setApplicableAddons(eklentiler);
         kahveciBean.addKahve(k1);
         Assert.assertFalse(kahveciBean.getAllKahve().isEmpty());
-        Assert.assertEquals(Long.valueOf(1), kahveciBean.getAllKahveCount());
+        Assert.assertEquals(1, kahveciBean.getAllKahve().size());
     }
 
     @NotNull

@@ -2,23 +2,33 @@
 <entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  version="2.0"
                  xmlns="http://java.sun.com/xml/ns/persistence/orm"
-                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+                 http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
 
     <!-- @formatter:off -->
 
     <named-query name="kahveci.findAllKahve">
         <query>
             select
-                k
+                distinct k
             from
                 Kahve k
+        </query>
+    </named-query>
+
+    <named-query name="kahveci.findAllKahve.eager">
+        <query>
+            select
+                distinct k
+            from
+                Kahve k join fetch k.applicableAddons
         </query>
     </named-query>
 
     <named-query name="kahveci.findAllEklenti">
         <query>
             select
-                e
+                distinct e
             from
                 Eklenti e
         </query>

@@ -19,7 +19,7 @@ public class KahveciBean {
     private EntityManager em;
 
     public List<Eklenti> getAllEklenti() {
-        return em.createQuery("select e from Eklenti e", Eklenti.class)
+        return em.createQuery("select distinct e from Eklenti e", Eklenti.class)
                 .getResultList();
     }
 
@@ -28,19 +28,22 @@ public class KahveciBean {
                 .getResultList();
     }
 
-    public Long getAllKahveCount() {
-        return em.createQuery("select count(k) from Kahve k", Long.class)
-                .getSingleResult();
-    }
-
     public void addKahve(@NotNull Kahve kahve) {
         em.persist(kahve);
         PurchaseEvent event = new PurchaseEvent(kahve, 0);
         em.persist(event);
     }
 
+    public void deleteEklenti(Eklenti e) {
+        em.remove(e);
+    }
+
     public void addKahveler(@NotNull Kahve... kahveler) {
         Arrays.stream(kahveler).forEach(this::addKahve);
+    }
+
+    public void addKahveler(@NotNull Collection<Kahve> kahveler) {
+        kahveler.forEach(this::addKahve);
     }
 
     public void addEklenti(@NotNull Eklenti eklenti) {
