@@ -15,7 +15,6 @@ public final class ArquillianDeployer {
 
     public static WebArchive createDeployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class)
-                .addPackages(true, "dersoz.ska.business")
                 .addPackages(true, "kahveci")
                 .addAsResource("META-INF/persistence.xml")
                 .addAsResource("META-INF/jpql")
