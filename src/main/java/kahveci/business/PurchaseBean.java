@@ -6,10 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Transactional
 public class PurchaseBean {
@@ -26,7 +23,9 @@ public class PurchaseBean {
     }
 
     public int getCountForKahve(Kahve k) {
-        return getPurchaseEvent(k).getSalesCount();
+        return getPurchaseEvent(k)
+                .orElse(new PurchaseEvent(null, 0))
+                .getSalesCount();
     }
 
     private PurchaseResult calculatePurchaseResult(Cart cart) {
@@ -55,17 +54,21 @@ public class PurchaseBean {
     }
 
     private void incrementSalesCount(Kahve k) {
-        PurchaseEvent event = getPurchaseEvent(k);
-        event.setSalesCount(event.getSalesCount() + 1);
+        getPurchaseEvent(k)
+                .ifPresent(e -> e.setSalesCount(e.getSalesCount() + 1));
     }
 
-    private PurchaseEvent getPurchaseEvent(Kahve k) {
+    private Optional<PurchaseEvent> getPurchaseEvent(Kahve k) {
         return em.createQuery("select p from PurchaseEvent p where p.kahve = :kahve", PurchaseEvent.class)
                 .setParameter("kahve", k)
                 .getResultList()
                 .stream()
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException(k.getId() + " numarali Kahve icin istatistik bulunamadi"));
+                .findFirst();
+    }
+
+    public List<PurchaseEvent> getAllPurchase() {
+        return em.createQuery("select distinct p from PurchaseEvent p", PurchaseEvent.class)
+                .getResultList();
     }
 
 }

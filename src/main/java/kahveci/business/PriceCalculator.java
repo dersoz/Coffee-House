@@ -23,11 +23,8 @@ public class PriceCalculator {
         double maxVal = 0;
         for (SavingsRule current : savingsRules) {
             double saving = current.apply(cart);
-            if (saving > 0) {
-                if (maxVal < saving) {
-                    maxVal = saving;
-                }
-            }
+            if (saving > 0 && maxVal < saving)
+                maxVal = saving;
         }
         return maxVal;
     }

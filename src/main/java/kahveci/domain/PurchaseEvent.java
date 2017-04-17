@@ -17,4 +17,12 @@ public class PurchaseEvent extends BaseEntity {
     @ManyToOne
     private Kahve kahve;
     private int salesCount = 0;
+
+    @Override
+    public String toString() {
+        return "PurchaseEvent{" +
+                "kahveName=" + kahve.getName() +
+                ", salesCount=" + salesCount +
+                '}';
+    }
 }

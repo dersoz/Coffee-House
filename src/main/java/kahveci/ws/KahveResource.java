@@ -21,7 +21,7 @@ public class KahveResource {
     public Response getAllKahve() {
         return Response
                 .ok()
-                .entity(kahveciBean.getAllKahve())
+                .entity(kahveciBean.getAllKahveEager())
                 .build();
     }
 

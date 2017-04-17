@@ -1,12 +1,15 @@
 package kahveci.shared;
 
 import kahveci.domain.BaseEntity;
+import kahveci.domain.Eklenti;
+import kahveci.domain.Kahve;
 import org.junit.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public class TestHelperBean {
@@ -32,5 +35,7 @@ public class TestHelperBean {
     public <T extends BaseEntity> void add(T entity) {
         em.persist(entity);
     }
+
+
 
 }

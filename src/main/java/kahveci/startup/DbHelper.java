@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static kahveci.business.KahveciBuilders.buildEklenti;
 import static kahveci.business.KahveciBuilders.buildKahve;
@@ -23,7 +24,7 @@ public class DbHelper {
     @PersistenceContext
     private EntityManager em;
 
-    void addInitData() {
+    public void addInitData() {
         Eklenti e1 = buildEklenti("Sut", 1);
         Eklenti e2 = buildEklenti("Su", 0.5);
         Eklenti e3 = buildEklenti("Findik Surubu", 1.5);
@@ -41,7 +42,8 @@ public class DbHelper {
 
     public void clearDb() {
         kahveciBean.getAllEklenti().forEach(this::removeEklenti);
-        kahveciBean.getAllKahve().forEach(this::removeKahve);
+        kahveciBean.getAllKahveEager().forEach(this::removeKahve);
+        kahveciBean.getAllKahveEager().forEach(this::removeKahve);
     }
 
     private void removeKahve(Kahve kahve) {
@@ -56,6 +58,23 @@ public class DbHelper {
             em.merge(kahve);
         }
         em.flush();
+    }
+
+    public Optional<Kahve> findKahveByName(String name) {
+        return em.createQuery("select k from Kahve k where k.name = :name", Kahve.class)
+                .setParameter("name", name)
+                .getResultList()
+                .stream()
+                .findFirst();
+    }
+
+    public Optional<Eklenti> findEklentiByEklentiAndKahveName(String eklentiName, String kahveName) {
+        return em.createQuery("select e from Eklenti e, Kahve k where e.name = :eName and k.name = :kName and e member of k.applicableAddons", Eklenti.class)
+                .setParameter("eName", eklentiName)
+                .setParameter("kName", kahveName)
+                .getResultList()
+                .stream()
+                .findFirst();
     }
 
 }

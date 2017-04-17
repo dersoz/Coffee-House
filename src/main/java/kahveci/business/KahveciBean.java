@@ -23,14 +23,19 @@ public class KahveciBean {
                 .getResultList();
     }
 
-    public List<Kahve> getAllKahve() {
+    public List<Kahve> getAllKahveEager() {
         return em.createQuery("select distinct k from Kahve k join fetch k.applicableAddons", Kahve.class)
                 .getResultList();
     }
 
     public void addKahve(@NotNull Kahve kahve) {
         em.persist(kahve);
-        PurchaseEvent event = new PurchaseEvent(kahve, 0);
+        PurchaseEvent event = em.createQuery("select p from PurchaseEvent p where p.kahve = :kahve", PurchaseEvent.class)
+                .setParameter("kahve", kahve)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(new PurchaseEvent(kahve, 0));
         em.persist(event);
     }
 
@@ -52,10 +57,6 @@ public class KahveciBean {
 
     public void addEklentiler(@NotNull Eklenti... eklentiler) {
         Arrays.stream(eklentiler).forEach(this::addEklenti);
-    }
-
-    public void addEklentiler(@NotNull Collection<Eklenti> eklentiler) {
-        eklentiler.forEach(em::persist);
     }
 
 }

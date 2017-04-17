@@ -36,18 +36,18 @@ public class KahveciBeanTest {
     public void setUp() {
         dbHelper.clearDb();
         Assert.assertTrue(kahveciBean.getAllEklenti().isEmpty());
-        Assert.assertTrue(kahveciBean.getAllKahve().isEmpty());
+        Assert.assertTrue(kahveciBean.getAllKahveEager().isEmpty());
     }
 
     @Test
     public void shouldAddEklentiAndKahve() {
         Set<Eklenti> eklentiler = getEklentiler();
-        Assert.assertTrue(kahveciBean.getAllKahve().isEmpty());
+        Assert.assertTrue(kahveciBean.getAllKahveEager().isEmpty());
         Kahve k1 = buildKahve("Turk Kahvesi", 5);
         k1.setApplicableAddons(eklentiler);
         kahveciBean.addKahve(k1);
-        Assert.assertFalse(kahveciBean.getAllKahve().isEmpty());
-        Assert.assertEquals(1, kahveciBean.getAllKahve().size());
+        Assert.assertFalse(kahveciBean.getAllKahveEager().isEmpty());
+        Assert.assertEquals(1, kahveciBean.getAllKahveEager().size());
     }
 
     @NotNull
