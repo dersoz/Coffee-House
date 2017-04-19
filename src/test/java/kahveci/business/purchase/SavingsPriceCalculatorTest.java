@@ -1,4 +1,4 @@
-package kahveci.business;
+package kahveci.business.purchase;
 
 import kahveci.domain.Cart;
 import org.junit.Assert;
@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.Collections;
 
-import static kahveci.business.KahveciBuilders.*;
+import static kahveci.shared.TestDataBuilders.*;
 
 public class SavingsPriceCalculatorTest {
 

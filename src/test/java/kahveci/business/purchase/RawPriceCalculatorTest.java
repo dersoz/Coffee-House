@@ -1,13 +1,17 @@
-package kahveci.business;
+package kahveci.business.purchase;
 
+import kahveci.domain.AddOn;
 import kahveci.domain.Cart;
+import kahveci.domain.Coffee;
 import kahveci.domain.PurchaseItem;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 
-import static kahveci.business.KahveciBuilders.*;
+import static kahveci.shared.TestDataBuilders.*;
 import static org.junit.Assert.assertEquals;
 
 public class RawPriceCalculatorTest {
@@ -25,7 +29,7 @@ public class RawPriceCalculatorTest {
     @Test
     public void eklentisizKahveIcinSadeceKahveFiyatiDonmeli() {
         PurchaseItem pi = new PurchaseItem(
-                buildKahve("Espresso", 5),
+                new Coffee("Espresso", 5),
                 Collections.emptySet()
         );
         assertEquals(5, priceCalculator.calculateRawPrice(pi), 0.001);
@@ -37,11 +41,13 @@ public class RawPriceCalculatorTest {
     @Test
     public void eklentiliKahveIcinKahveVeEklentiToplamFiyatiDonmeli() {
         PurchaseItem pi = new PurchaseItem(
-                buildKahve("Espresso", 5),
-                buildEklentiler(
-                        buildEklenti("Su", 0.5),
-                        buildEklenti("Sut", 1),
-                        buildEklenti("Findik Surubu", 1.5)
+                new Coffee("Espresso", 5),
+                new HashSet<>(
+                        Arrays.asList(
+                                new AddOn("Su", 0.5),
+                                new AddOn("Sut", 1),
+                                new AddOn("Findik Surubu", 1.5)
+                        )
                 )
         );
         assertEquals(8, priceCalculator.calculateRawPrice(pi), 0.001);

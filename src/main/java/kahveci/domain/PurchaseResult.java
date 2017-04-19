@@ -8,6 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class PurchaseResult {
+
     private double rawPrice;
     private double savings;
+
 }

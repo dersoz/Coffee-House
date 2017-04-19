@@ -1,6 +1,7 @@
 package kahveci.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +10,11 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 public class PurchaseItem {
-    private Kahve kahve;
-    private Set<Eklenti> addons = new HashSet<>();
+
+    private Coffee coffee;
+    private Set<AddOn> addons = new HashSet<>();
+
 }

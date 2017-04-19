@@ -1,7 +1,7 @@
 package kahveci.ws;
 
-import kahveci.domain.Kahve;
-import kahveci.business.KahveciBean;
+import kahveci.business.coffee.CoffeeCrud;
+import kahveci.domain.Coffee;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -12,24 +12,24 @@ import javax.ws.rs.core.*;
 @Path("/kahve")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class KahveResource {
+public class CoffeeResource {
 
     @Inject
-    private KahveciBean kahveciBean;
+    private CoffeeCrud coffeeCrud;
 
     @GET
     public Response getAllKahve() {
         return Response
                 .ok()
-                .entity(kahveciBean.getAllKahveEager())
+                .entity(coffeeCrud.getAllKahveEager())
                 .build();
     }
 
     @POST
-    public Response addKahve(Kahve kahve, @Context UriInfo uriInfo) {
-        kahveciBean.addKahve(kahve);
+    public Response addKahve(Coffee coffee, @Context UriInfo uriInfo) {
+        coffeeCrud.addKahve(coffee);
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
-        uriBuilder.path(Long.toString(kahve.getId()));
+        uriBuilder.path(Long.toString(coffee.getId()));
         return Response.created(uriBuilder.build()).build();
     }
 

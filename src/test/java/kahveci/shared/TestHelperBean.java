@@ -1,15 +1,12 @@
 package kahveci.shared;
 
 import kahveci.domain.BaseEntity;
-import kahveci.domain.Eklenti;
-import kahveci.domain.Kahve;
 import org.junit.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 public class TestHelperBean {
@@ -18,8 +15,8 @@ public class TestHelperBean {
     private EntityManager em;
 
     public void clearDB() {
-        em.createQuery("delete from Eklenti ").executeUpdate();
-        em.createQuery("delete from Kahve ").executeUpdate();
+        em.createQuery("delete from AddOn ").executeUpdate();
+        em.createQuery("delete from Coffee ").executeUpdate();
     }
 
     public <T extends BaseEntity> void assertTableSizeIs(int expectedSize, Class<T> clazz) {
@@ -28,7 +25,7 @@ public class TestHelperBean {
     }
 
     public Long getAllKahveCount() {
-        return em.createQuery("select count(k) from Kahve k", Long.class)
+        return em.createQuery("select count(k) from Coffee k", Long.class)
                 .getSingleResult();
     }
 

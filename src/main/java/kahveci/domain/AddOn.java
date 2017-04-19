@@ -13,15 +13,21 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @EqualsAndHashCode(callSuper = true, exclude = "applicableCoffees")
 @Entity
-@Table(name = "EKLENTI")
-public class Eklenti extends BaseEntity {
+@Table(name = "ADDON")
+public class AddOn extends BaseEntity {
+
     private String name;
     private double price;
 
     @XmlTransient
     @ManyToMany(mappedBy = "applicableAddons")
-    private Set<Kahve> applicableCoffees = new HashSet<>();
+    private Set<Coffee> applicableCoffees = new HashSet<>();
+
+    public AddOn(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
 }

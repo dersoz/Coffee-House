@@ -1,4 +1,4 @@
-package kahveci.business;
+package kahveci.business.purchase;
 
 import kahveci.domain.Cart;
 

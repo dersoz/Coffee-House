@@ -6,6 +6,10 @@ import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
+/**
+ * To trigger Startup action without usinf EJB Startup annocation,
+ * This is a CDI trick
+ */
 @ApplicationScoped
 public class ProvisioningDataForApplicationLifecycle {
 

@@ -10,11 +10,11 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @EqualsAndHashCode(callSuper = true, exclude = "applicableAddons")
+@Builder
 @Entity
-@Table(name = "KAHVE")
-public class Kahve extends BaseEntity {
+@Table(name = "COFFEE")
+public class Coffee extends BaseEntity {
 
     private String name;
     private double price;
@@ -22,13 +22,18 @@ public class Kahve extends BaseEntity {
     @ManyToMany
     @JoinTable(
             joinColumns = {
-                    @JoinColumn(name = "KAHVE_ID")
+                    @JoinColumn(name = "COFFEE_ID")
             },
-            name = "KAHVE_EKLENTI",
+            name = "COFFEE_ADDONS",
             inverseJoinColumns = {
-                    @JoinColumn(name = "EKLENTI_ID")
+                    @JoinColumn(name = "ADDON_ID")
             }
     )
-    private Set<Eklenti> applicableAddons = new HashSet<>();
+    private Set<AddOn> applicableAddons = new HashSet<>();
+
+    public Coffee(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
 
 }

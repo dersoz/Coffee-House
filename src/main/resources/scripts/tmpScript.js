@@ -1,7 +1,7 @@
 var drinks = [];
 var addons = [];
 var baseURL = "http://localhost:8080/kahveci";
-// var baseURL = https://floating-hamlet-85904.herokuapp.com/kahveci;
+// var baseURL = "https://floating-hamlet-85904.herokuapp.com";
 
 // filling drinks
 function fillDrinks() {
@@ -16,11 +16,12 @@ function fillDrinks() {
     })
     $('#eklentiSec').append($('<option>', {value: -1, text: 'Seciniz'}));
 }
+
 // filling available addOns
 function addAddOns() {
     drinks.forEach(function (element) {
         //console.log($('#icecekSec'))
-        if (element.id == $('#icecekSec').val()) {
+        if (element.id === $('#icecekSec').val()) {
             $('#eklentiSec').empty();
             element.applicableAddons.forEach(function (addon) {
                 $('#eklentiSec').append($('<option>', {value: addon.id, text: addon.name}));
@@ -39,21 +40,18 @@ $(document).ready(function () {
 
 var drinkList = [];
 var totalCost = 0;
-
 function addDrink() {
-    drinkList.push({drinkId: $("#icecekSec option:selected").val(), addonId: $("#eklentiSec option:selected").val()})
+    drinkList.push({ drinkId: $("#icecekSec option:selected").val(), addonId: $("#eklentiSec option:selected").val() })
     $('#orders').html('')
 
     drinkList.forEach(function (element) {
         $('#orders').append('<p>' + drinks[element.drinkId].name + ' & ' + addons[element.addonId].name + ' => ' + (parseFloat(drinks[element.drinkId].price) + parseFloat(addons[element.addonId].price)) + ' TL </p>');
         totalCost += (parseFloat(drinks[element.drinkId].price) + parseFloat(addons[element.addonId].price))
     })
-
     $('#purchase').show();
     return false;
 }
-
-function fillRespPurchase() {
+function fillRespPurchase(){
     $('#orders').html('')
     $('#orders').append('<hr>');
     $('#orders').append("Indirimsiz Tutar : ");
@@ -83,21 +81,25 @@ function purchase() {
 
     return false;
 }
+
 function showReports() {
     $('#siparis').hide();
     $('#reports').show();
     $('#navSiparis').removeClass('active');
     $('#navReports').addClass('active');
 }
+
 function showSiparis() {
     $('#reports').hide();
     $('#siparis').show();
     $('#navReports').removeClass('active');
     $('#navSiparis').addClass('active');
 }
+
 function fillReport() {
     $('#stats').append("Satin alinan icecek sayisi : " + this.responseText);
 }
+
 function getReport() {
     $('#stats').html('')
     $('#stats').append('<hr>');

@@ -1,7 +1,7 @@
-package kahveci.business;
+package kahveci.business.purchase;
 
+import kahveci.domain.AddOn;
 import kahveci.domain.Cart;
-import kahveci.domain.Eklenti;
 import kahveci.domain.PurchaseItem;
 
 import java.util.LinkedList;
@@ -39,12 +39,12 @@ public class PriceCalculator {
 
     double calculateRawPrice(PurchaseItem item) {
         return item
-                .getKahve()
+                .getCoffee()
                 .getPrice()
                 + item
                 .getAddons()
                 .stream()
-                .map(Eklenti::getPrice)
+                .map(AddOn::getPrice)
                 .reduce(Double::sum)
                 .orElse(0.0);
     }

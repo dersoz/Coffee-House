@@ -1,7 +1,7 @@
 package kahveci.ws;
 
-import kahveci.domain.Eklenti;
-import kahveci.business.KahveciBean;
+import kahveci.business.eklenti.AddOnCrud;
+import kahveci.domain.AddOn;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -12,23 +12,23 @@ import javax.ws.rs.core.*;
 @Path("/eklenti")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class EklentiResource {
+public class AddOnResource {
 
     @Inject
-    private KahveciBean kahveciBean;
+    private AddOnCrud addOnCrud;
 
     @GET
     public Response getAllEklenti() {
         return Response.ok()
-                .entity(kahveciBean.getAllEklenti())
+                .entity(addOnCrud.getAllEklenti())
                 .build();
     }
 
     @POST
-    public Response addEklenti(Eklenti eklenti, @Context UriInfo uriInfo) {
-        kahveciBean.addEklentiler(eklenti);
+    public Response addEklenti(AddOn addOn, @Context UriInfo uriInfo) {
+        addOnCrud.addEklentiler(addOn);
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
-        uriBuilder.path(Long.toString(eklenti.getId()));
+        uriBuilder.path(Long.toString(addOn.getId()));
         return Response.created(uriBuilder.build()).build();
     }
 

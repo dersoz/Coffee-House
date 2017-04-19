@@ -10,34 +10,34 @@
     <named-query name="kahveci.findAllKahve">
         <query>
             select
-                distinct k
+            distinct k
             from
-                Kahve k
+            Coffee k
         </query>
     </named-query>
 
     <named-query name="kahveci.findAllKahve.eager">
         <query>
             select
-                distinct k
+            distinct k
             from
-                Kahve k join fetch k.applicableAddons
+            Coffee k join fetch k.applicableAddons
         </query>
     </named-query>
 
     <named-query name="kahveci.findAllEklenti">
         <query>
             select
-                distinct e
+            distinct e
             from
-                Eklenti e
+            AddOn e
         </query>
     </named-query>
 
     <named-query name="pets.deleteAllEklenti">
         <query>
             delete
-            from Eklenti
+            from AddOn
         </query>
     </named-query>
 

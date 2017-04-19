@@ -1,5 +1,7 @@
-package kahveci.business;
+package kahveci.business.purchase;
 
+import kahveci.business.coffee.CoffeeCrud;
+import kahveci.business.eklenti.AddOnCrud;
 import kahveci.domain.*;
 import kahveci.shared.ArquillianDeployer;
 import kahveci.startup.DbHelper;
@@ -11,11 +13,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static kahveci.business.KahveciBuilders.*;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -29,33 +30,29 @@ public class PurchaseBeanTest {
     private DbHelper dbHelper;
 
     @Inject
-    private KahveciBean kahveciBean;
+    AddOnCrud addOnCrud;
+
+    @Inject
+    CoffeeCrud coffeeCrud;
 
     @Before
     public void setUp() {
         dbHelper.clearDb();
-        assertTrue(kahveciBean.getAllEklenti().isEmpty());
-        assertTrue(kahveciBean.getAllKahveEager().isEmpty());
+        assertTrue(addOnCrud.getAllEklenti().isEmpty());
+        assertTrue(coffeeCrud.getAllKahveEager().isEmpty());
     }
 
     @Test
     public void getAllPurchase() throws Exception {
         dbHelper.addInitData();
-        Optional<Kahve> americano = dbHelper.findKahveByName("Americano");
-        Optional<Eklenti> eklenti = dbHelper.findEklentiByEklentiAndKahveName("Sut", "Americano");
+        Optional<Coffee> americano = dbHelper.findKahveByName("Americano");
+        Optional<AddOn> eklenti = dbHelper.findEklentiByEklentiAndKahveName("Sut", "Americano");
         assertTrue(americano.isPresent());
         assertTrue(eklenti.isPresent());
-        Kahve k = americano.get();
-        Eklenti e = eklenti.get();
-        Cart cart = buildCart(
-                buildItemList(
-                        buildItem(
-                                k,
-                                buildEklentiler(
-                                        e
-                                )
-                        )
-                )
+        Coffee k = americano.get();
+        AddOn e = eklenti.get();
+        Cart cart = new Cart(
+                Collections.singletonList(new PurchaseItem(k, Collections.singleton(e)))
         );
         PurchaseResult purchaseResult = purchaseBean.purchase(cart);
         assertNotEquals(0, purchaseResult.getRawPrice(), 0.001);

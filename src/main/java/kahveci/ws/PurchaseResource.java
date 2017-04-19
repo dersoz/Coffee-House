@@ -1,9 +1,8 @@
 package kahveci.ws;
 
-import kahveci.business.KahveciBean;
-import kahveci.business.PurchaseBean;
+import kahveci.business.purchase.PurchaseBean;
 import kahveci.domain.Cart;
-import kahveci.domain.Kahve;
+import kahveci.domain.Coffee;
 import kahveci.domain.PurchaseResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +28,6 @@ public class PurchaseResource {
     @Inject
     private PurchaseBean purchaseBean;
 
-    @Inject
-    private KahveciBean kahveciBean;
-
     @PUT
     public Response purchase(Cart cart, @Context UriInfo uriInfo) {
         PurchaseResult purchaseResult = purchaseBean.purchase(cart);
@@ -44,17 +40,17 @@ public class PurchaseResource {
         List<SaleStat> saleStats = purchaseBean
                 .getAllPurchase()
                 .stream()
-                .map(p -> new SaleStat(p.getKahve().getName(), p.getSalesCount()))
+                .map(p -> new SaleStat(p.getCoffee().getName(), p.getSalesCount()))
                 .collect(Collectors.toList());
         return Response.ok(saleStats).build();
     }
 
     @GET
-    @Path("sales/{id}")
-    public Response getSalesCount(@PathParam("id") long kahveID) {
-        Kahve kahve = new Kahve();
-        kahve.setId(kahveID);
-        int res = purchaseBean.getCountForKahve(kahve);
+    @Path("sales/{coffeeID}")
+    public Response getSalesCount(@PathParam("coffeeID") long kahveID) {
+        Coffee coffee = new Coffee();
+        coffee.setId(kahveID);
+        int res = purchaseBean.getCountForKahve(coffee);
         return Response.ok(res).build();
     }
 
