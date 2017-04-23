@@ -1,7 +1,7 @@
 package kahveci.business;
 
+import kahveci.business.addon.AddOnCrud;
 import kahveci.business.coffee.CoffeeCrud;
-import kahveci.business.eklenti.AddOnCrud;
 import kahveci.domain.AddOn;
 import kahveci.domain.Coffee;
 import kahveci.shared.ArquillianDeployer;
@@ -41,18 +41,18 @@ public class KahveciBeanTest {
     public void setUp() {
         dbHelper.clearDb();
         Assert.assertTrue(addOnCrud.getAllEklenti().isEmpty());
-        Assert.assertTrue(coffeeCrud.getAllKahveEager().isEmpty());
+        Assert.assertTrue(coffeeCrud.getAllCoffeeEager().isEmpty());
     }
 
     @Test
     public void shouldAddEklentiAndKahve() {
         Set<AddOn> eklentiler = getEklentiler();
-        Assert.assertTrue(coffeeCrud.getAllKahveEager().isEmpty());
+        Assert.assertTrue(coffeeCrud.getAllCoffeeEager().isEmpty());
         Coffee k1 = buildKahve("Turk Kahvesi", 5);
         k1.setApplicableAddons(eklentiler);
         coffeeCrud.addKahve(k1);
-        Assert.assertFalse(coffeeCrud.getAllKahveEager().isEmpty());
-        Assert.assertEquals(1, coffeeCrud.getAllKahveEager().size());
+        Assert.assertFalse(coffeeCrud.getAllCoffeeEager().isEmpty());
+        Assert.assertEquals(1, coffeeCrud.getAllCoffeeEager().size());
     }
 
     @NotNull

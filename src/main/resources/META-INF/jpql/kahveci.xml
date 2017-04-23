@@ -41,5 +41,29 @@
         </query>
     </named-query>
 
+    <named-query name="kahveci.findKahveByName">
+        <query>
+            select
+                k
+            from
+                Coffee k
+            where
+                k.name = :name
+        </query>
+    </named-query>
+
+    <named-query name="kahveci.findAddOnByNameAndByCoffeeName">
+        <query>
+            select
+                e
+            from
+                AddOn e, Coffee k
+            where
+                e.name = :eName and
+                k.name = :kName and
+                e member of k.applicableAddons
+        </query>
+    </named-query>
+
     <!-- @formatter:on -->
 </entity-mappings>

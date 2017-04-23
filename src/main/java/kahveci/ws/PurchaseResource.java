@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequestScoped
-@Path("purchase")
+@Path(WsPaths.PURCHASE_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PurchaseResource {
@@ -40,7 +40,7 @@ public class PurchaseResource {
         List<SaleStat> saleStats = purchaseBean
                 .getAllPurchase()
                 .stream()
-                .map(p -> new SaleStat(p.getCoffee().getName(), p.getSalesCount()))
+                .map(p -> SaleStat.of(p.getCoffee().getName(), p.getSalesCount()))
                 .collect(Collectors.toList());
         return Response.ok(saleStats).build();
     }
@@ -54,11 +54,11 @@ public class PurchaseResource {
         return Response.ok(res).build();
     }
 
-    @AllArgsConstructor
+    @AllArgsConstructor(staticName = "of")
     @NoArgsConstructor
     @Getter
     @Setter
-    private class SaleStat {
+    private static class SaleStat {
         private String kahve;
         private int satisAdedi;
     }

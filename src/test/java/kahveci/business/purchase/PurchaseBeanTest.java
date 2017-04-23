@@ -1,7 +1,7 @@
 package kahveci.business.purchase;
 
+import kahveci.business.addon.AddOnCrud;
 import kahveci.business.coffee.CoffeeCrud;
-import kahveci.business.eklenti.AddOnCrud;
 import kahveci.domain.*;
 import kahveci.shared.ArquillianDeployer;
 import kahveci.startup.DbHelper;
@@ -39,14 +39,14 @@ public class PurchaseBeanTest {
     public void setUp() {
         dbHelper.clearDb();
         assertTrue(addOnCrud.getAllEklenti().isEmpty());
-        assertTrue(coffeeCrud.getAllKahveEager().isEmpty());
+        assertTrue(coffeeCrud.getAllCoffeeEager().isEmpty());
     }
 
     @Test
     public void getAllPurchase() throws Exception {
         dbHelper.addInitData();
-        Optional<Coffee> americano = dbHelper.findKahveByName("Americano");
-        Optional<AddOn> eklenti = dbHelper.findEklentiByEklentiAndKahveName("Sut", "Americano");
+        Optional<Coffee> americano = dbHelper.findCoffeeByName("Americano");
+        Optional<AddOn> eklenti = dbHelper.findAddOnByNameAndByCoffeeName("Sut", "Americano");
         assertTrue(americano.isPresent());
         assertTrue(eklenti.isPresent());
         Coffee k = americano.get();

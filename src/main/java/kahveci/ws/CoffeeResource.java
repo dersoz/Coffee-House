@@ -9,7 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 @RequestScoped
-@Path("/kahve")
+@Path(WsPaths.COFFEE_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CoffeeResource {
@@ -18,15 +18,15 @@ public class CoffeeResource {
     private CoffeeCrud coffeeCrud;
 
     @GET
-    public Response getAllKahve() {
+    public Response getAllCoffee() {
         return Response
                 .ok()
-                .entity(coffeeCrud.getAllKahveEager())
+                .entity(coffeeCrud.getAllCoffeeEager())
                 .build();
     }
 
     @POST
-    public Response addKahve(Coffee coffee, @Context UriInfo uriInfo) {
+    public Response addCoffee(Coffee coffee, @Context UriInfo uriInfo) {
         coffeeCrud.addKahve(coffee);
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
         uriBuilder.path(Long.toString(coffee.getId()));

@@ -18,7 +18,7 @@ public class CoffeeCrud {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Coffee> getAllKahveEager() {
+    public List<Coffee> getAllCoffeeEager() {
         return em.createQuery("select distinct k from Coffee k join fetch k.applicableAddons", Coffee.class)
                 .getResultList();
     }

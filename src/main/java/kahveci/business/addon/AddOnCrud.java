@@ -1,4 +1,4 @@
-package kahveci.business.eklenti;
+package kahveci.business.addon;
 
 import kahveci.domain.AddOn;
 

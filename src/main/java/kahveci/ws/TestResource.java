@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 @RequestScoped
-@Path("test")
+@Path(WsPaths.TEST_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TestResource {
@@ -37,8 +37,8 @@ public class TestResource {
     @GET
     @Path("purchase")
     public Response testPurchase() {
-        Optional<Coffee> americano = dbHelper.findKahveByName("Americano");
-        Optional<AddOn> eklenti = dbHelper.findEklentiByEklentiAndKahveName("Sut", "Americano");
+        Optional<Coffee> americano = dbHelper.findCoffeeByName("Americano");
+        Optional<AddOn> eklenti = dbHelper.findAddOnByNameAndByCoffeeName("Sut", "Americano");
         if (!americano.isPresent() || !eklenti.isPresent())
             return Response.status(Response.Status.BAD_REQUEST).build();
         Cart cart = new Cart(
