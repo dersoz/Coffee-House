@@ -1,6 +1,4 @@
-package kahveci.business.addon;
-
-import kahveci.domain.AddOn;
+package kahveci.addon;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,21 +13,17 @@ public class AddOnCrud {
     @PersistenceContext
     private EntityManager em;
 
-    public List<AddOn> getAllEklenti() {
+    public List<AddOn> findAllAddOn() {
         return em.createQuery("select distinct e from AddOn e", AddOn.class)
                 .getResultList();
     }
 
-    public void deleteEklenti(AddOn e) {
-        em.remove(e);
-    }
-
-    public void addEklenti(@NotNull AddOn addOn) {
+    private void addAddOn(@NotNull AddOn addOn) {
         em.persist(addOn);
     }
 
-    public void addEklentiler(@NotNull AddOn... eklentiler) {
-        Arrays.stream(eklentiler).forEach(this::addEklenti);
+    public void addAddOns(@NotNull AddOn... addOns) {
+        Arrays.stream(addOns).forEach(this::addAddOn);
     }
 
 }

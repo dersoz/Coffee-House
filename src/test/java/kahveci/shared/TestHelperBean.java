@@ -1,6 +1,5 @@
 package kahveci.shared;
 
-import kahveci.domain.BaseEntity;
 import org.junit.Assert;
 
 import javax.persistence.EntityManager;
@@ -32,7 +31,6 @@ public class TestHelperBean {
     public <T extends BaseEntity> void add(T entity) {
         em.persist(entity);
     }
-
 
 
 }

@@ -1,9 +1,9 @@
-package kahveci.business;
+package kahveci;
 
-import kahveci.business.addon.AddOnCrud;
-import kahveci.business.coffee.CoffeeCrud;
-import kahveci.domain.AddOn;
-import kahveci.domain.Coffee;
+import kahveci.addon.AddOn;
+import kahveci.addon.AddOnCrud;
+import kahveci.coffee.Coffee;
+import kahveci.coffee.CoffeeCrud;
 import kahveci.shared.ArquillianDeployer;
 import kahveci.startup.DbHelper;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RunWith(Arquillian.class)
-public class KahveciBeanTest {
+public class CrudTest {
 
     @Inject
     private CoffeeCrud coffeeCrud;
@@ -40,7 +40,7 @@ public class KahveciBeanTest {
     @Before
     public void setUp() {
         dbHelper.clearDb();
-        Assert.assertTrue(addOnCrud.getAllEklenti().isEmpty());
+        Assert.assertTrue(addOnCrud.findAllAddOn().isEmpty());
         Assert.assertTrue(coffeeCrud.getAllCoffeeEager().isEmpty());
     }
 
@@ -57,13 +57,13 @@ public class KahveciBeanTest {
 
     @NotNull
     private Set<AddOn> getEklentiler() {
-        Assert.assertTrue(addOnCrud.getAllEklenti().isEmpty());
+        Assert.assertTrue(addOnCrud.findAllAddOn().isEmpty());
         AddOn e1 = buildEklenti("Limon", 1);
         AddOn e2 = buildEklenti("Tarcin", 0.5);
         Set<AddOn> eklentiler = new HashSet<>(Arrays.asList(e1, e2));
-        addOnCrud.addEklentiler(e1, e2);
-        Assert.assertFalse(addOnCrud.getAllEklenti().isEmpty());
-        Assert.assertEquals(2, addOnCrud.getAllEklenti().size());
+        addOnCrud.addAddOns(e1, e2);
+        Assert.assertFalse(addOnCrud.findAllAddOn().isEmpty());
+        Assert.assertEquals(2, addOnCrud.findAllAddOn().size());
         return eklentiler;
     }
 

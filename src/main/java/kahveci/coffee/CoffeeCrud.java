@@ -1,7 +1,6 @@
-package kahveci.business.coffee;
+package kahveci.coffee;
 
-import kahveci.domain.Coffee;
-import kahveci.domain.PurchaseEvent;
+import kahveci.purchase.domain.PurchaseEvent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

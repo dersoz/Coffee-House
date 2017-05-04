@@ -1,9 +1,9 @@
-package kahveci.ws;
+package kahveci.purchase;
 
-import kahveci.business.purchase.PurchaseBean;
-import kahveci.domain.Cart;
-import kahveci.domain.Coffee;
-import kahveci.domain.PurchaseResult;
+import kahveci.coffee.Coffee;
+import kahveci.purchase.domain.Cart;
+import kahveci.purchase.domain.PurchaseResult;
+import kahveci.shared.WsPaths;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

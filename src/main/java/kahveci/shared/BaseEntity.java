@@ -1,4 +1,4 @@
-package kahveci.domain;
+package kahveci.shared;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

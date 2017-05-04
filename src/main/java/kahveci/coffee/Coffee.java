@@ -1,5 +1,7 @@
-package kahveci.domain;
+package kahveci.coffee;
 
+import kahveci.addon.AddOn;
+import kahveci.shared.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

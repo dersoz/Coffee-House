@@ -1,10 +1,14 @@
-package kahveci.business.purchase;
+package kahveci.purchase.domain;
 
-import kahveci.domain.Cart;
+import kahveci.purchase.PriceCalculator;
 
 import java.util.stream.DoubleStream;
 
-public class ThreeOrMoreCoffeeSavingsRule implements SavingsRule {
+/**
+ * If there are 3 or more coffee in the cart
+ * The cart is eligible for a discount with an amount of minimum priced coffee in the cart
+ */
+public class ThreeOrMoreCoffeeDiscountRule implements DiscountRule {
 
     private PriceCalculator priceCalculator = new PriceCalculator();
 

@@ -1,7 +1,6 @@
-package kahveci.ws;
+package kahveci.coffee;
 
-import kahveci.business.coffee.CoffeeCrud;
-import kahveci.domain.Coffee;
+import kahveci.shared.WsPaths;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

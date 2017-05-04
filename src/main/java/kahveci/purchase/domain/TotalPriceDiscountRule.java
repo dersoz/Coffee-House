@@ -1,8 +1,12 @@
-package kahveci.business.purchase;
+package kahveci.purchase.domain;
 
-import kahveci.domain.Cart;
+import kahveci.purchase.PriceCalculator;
 
-public class TotalPriceSavingsRule implements SavingsRule {
+/**
+ * If the total price is more than a certain amount
+ * The cart is eligible for 25 percent discount
+ */
+public class TotalPriceDiscountRule implements DiscountRule {
 
     private PriceCalculator priceCalculator = new PriceCalculator();
 

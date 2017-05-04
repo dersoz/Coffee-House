@@ -1,4 +1,4 @@
-package kahveci.esb;
+package kahveci.shared;
 
 public interface CoffeeHouseEvent {
     String eventType();

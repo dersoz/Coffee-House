@@ -1,4 +1,4 @@
-package kahveci.ws;
+package kahveci.shared;
 
 public interface WsPaths {
     String COFFEE_PATH = "kahve/";

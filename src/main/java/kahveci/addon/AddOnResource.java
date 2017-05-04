@@ -1,7 +1,6 @@
-package kahveci.ws;
+package kahveci.addon;
 
-import kahveci.business.addon.AddOnCrud;
-import kahveci.domain.AddOn;
+import kahveci.shared.WsPaths;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,13 +19,13 @@ public class AddOnResource {
     @GET
     public Response getAllAddOn() {
         return Response.ok()
-                .entity(addOnCrud.getAllEklenti())
+                .entity(addOnCrud.findAllAddOn())
                 .build();
     }
 
     @POST
     public Response addAddOn(AddOn addOn, @Context UriInfo uriInfo) {
-        addOnCrud.addEklentiler(addOn);
+        addOnCrud.addAddOns(addOn);
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
         uriBuilder.path(Long.toString(addOn.getId()));
         return Response.created(uriBuilder.build()).build();

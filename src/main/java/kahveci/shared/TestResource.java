@@ -1,7 +1,10 @@
-package kahveci.ws;
+package kahveci.shared;
 
-import kahveci.business.purchase.PurchaseBean;
-import kahveci.domain.*;
+import kahveci.addon.AddOn;
+import kahveci.coffee.Coffee;
+import kahveci.purchase.PurchaseBean;
+import kahveci.purchase.domain.Cart;
+import kahveci.purchase.domain.PurchaseResult;
 import kahveci.startup.DbHelper;
 
 import javax.enterprise.context.RequestScoped;
@@ -43,7 +46,7 @@ public class TestResource {
             return Response.status(Response.Status.BAD_REQUEST).build();
         Cart cart = new Cart(
                 Collections.singletonList(
-                        new PurchaseItem(americano.get(), Collections.singleton(eklenti.get()))
+                        new Cart.PurchaseItem(americano.get(), Collections.singleton(eklenti.get()))
                 )
         );
         PurchaseResult purchase = purchaseBean.purchase(cart);
