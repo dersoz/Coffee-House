@@ -1,23 +1,22 @@
 package kahveci.shared;
 
-import kahveci.domain.AddOn;
-import kahveci.domain.Cart;
-import kahveci.domain.Coffee;
-import kahveci.domain.PurchaseItem;
+import kahveci.addon.AddOn;
+import kahveci.coffee.Coffee;
+import kahveci.purchase.domain.Cart;
 
 import java.util.*;
 
 public final class TestDataBuilders {
 
-    public static List<PurchaseItem> buildItemList(PurchaseItem... items) {
+    public static List<Cart.PurchaseItem> buildItemList(Cart.PurchaseItem... items) {
         return new LinkedList<>(Arrays.asList(items));
     }
 
-    public static PurchaseItem buildItem(Coffee coffee, Set<AddOn> eklentiler) {
-        return new PurchaseItem(coffee, eklentiler);
+    public static Cart.PurchaseItem buildItem(Coffee coffee, Set<AddOn> eklentiler) {
+        return new Cart.PurchaseItem(coffee, eklentiler);
     }
 
-    public static Cart buildCart(List<PurchaseItem> items) {
+    public static Cart buildCart(List<Cart.PurchaseItem> items) {
         return new Cart(items);
     }
 

@@ -1,9 +1,9 @@
 package kahveci.startup;
 
-import kahveci.business.addon.AddOnCrud;
-import kahveci.business.coffee.CoffeeCrud;
-import kahveci.domain.AddOn;
-import kahveci.domain.Coffee;
+import kahveci.addon.AddOn;
+import kahveci.addon.AddOnCrud;
+import kahveci.coffee.Coffee;
+import kahveci.coffee.CoffeeCrud;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -29,7 +29,7 @@ public class DbHelper {
         AddOn e3 = buildAddOn("Findik Surubu", 1.5);
         AddOn e4 = buildAddOn("Tarcin", 2);
         AddOn e5 = buildAddOn("Limon", 1.2);
-        addOnCrud.addEklentiler(e1, e2, e3, e4, e5);
+        addOnCrud.addAddOns(e1, e2, e3, e4, e5);
         List<Coffee> kahveler = new LinkedList<>();
         kahveler.add(buildCoffee("Americano", 5, e1, e2, e3));
         kahveler.add(buildCoffee("Turkish", 3));
@@ -48,7 +48,7 @@ public class DbHelper {
     }
 
     public void clearDb() {
-        addOnCrud.getAllEklenti().forEach(this::removeAddOn);
+        addOnCrud.findAllAddOn().forEach(this::removeAddOn);
         coffeeCrud.getAllCoffeeEager().forEach(this::removeCoffee);
         coffeeCrud.getAllCoffeeEager().forEach(this::removeCoffee);
     }
